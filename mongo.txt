@@ -1,0 +1,28 @@
+// 1. Create a collection named orders.
+> db.createCollection('orders')
+
+// 2. Insert at least 3 documents that represent an order.
+>db.orders.insert({orderDate: new Date(), lineItems: [{unitPrice: 3.00}, {quantity: 3}, {productName: "Yobagoya"}], orderTotal: 9.00})
+>db.orders.insert({orderDate: new Date("2016-03-25"), lineItems: [{unitPrice:53.00}, {quantity: 2}, {productName: "Amazon Gift Card"}], orderTotal: 106.00})
+>db.orders.insert({orderDate: new Date("2016-10-15"), lineItems: [{unitPrice:10.00}, {quantity: 2}, {productName: "Miller High Life"}], orderTotal: 20.00})
+
+// 3. Find a single order document, any order document.
+> db.orders.find({orderTotal: {$gt: 105}})
+
+// 4. Find all orders and make them look pretty.
+> db.orders.find().pretty()
+
+// 5. Find all orders with and orderDate that is prior to 1/1/2016.
+> db.orders.find({orderDate: {$lt: new Date("2016-01-01")}}).pretty()
+
+// 6. Find all orders with an orderDate that is after 1/1/2016.
+> db.orders.find({orderDate: {$gt: new Date("2016-01-01")}}).pretty()
+
+// 7. Find orders with lineItems that have a quantity that is less than 3, but greater than 1. *NOTICE: I changed the requirements to match my data.
+> db.orders.find({"lineItems.quantity": {"$gt": 1, "$lt": 3}})
+
+// 8. Update one of your line items to 42.99.
+??
+
+// 9. Remove one of your orders.
+> db.orders.remove({"lineItems.productName": "Yobagoya"})
