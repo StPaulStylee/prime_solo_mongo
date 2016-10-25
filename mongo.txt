@@ -22,7 +22,7 @@
 > db.orders.find({"lineItems.quantity": {"$gt": 1, "$lt": 3}})
 
 // 8. Update one of your line items to 42.99.
-??
+db.orders.update({"lineItems.productName": "Amazon Gift Card"}, {$set: {"unitPrice": 42.99}})
 
 // 9. Remove one of your orders.
 > db.orders.remove({"lineItems.productName": "Yobagoya"})
